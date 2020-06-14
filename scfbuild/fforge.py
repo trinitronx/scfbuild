@@ -5,15 +5,13 @@
 Utility functions using FontForge
 '''
 
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
 import logging
 import fontforge
 import psMat
 
 from . import util
 from .util import FONT_EM, DEFAULT_GLYPH_WIDTH
-from .str import ZWJ_INT, VS16_INT, ZWJ_SEQUENCES
+from .unicode import ZWJ_INT, VS16_INT, ZWJ_SEQUENCES
 
 logger = logging.getLogger(__name__)
 
