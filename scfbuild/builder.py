@@ -128,7 +128,7 @@ class Builder(object):
                 new_svg_group.append(child)
 
             # Backup the root attribs, clear the children, and apply attribs
-            svg_root_attrib = svg_root.items()
+            svg_root_attrib = list(svg_root.items())
             svg_root.clear()
             for name, value in svg_root_attrib:
                 svg_root.set(name, value)
@@ -179,7 +179,7 @@ class Builder(object):
         codepoints = {}
         for subtable in self.font['cmap'].tables:
             if subtable.isUnicode():
-                for codepoint, name in subtable.cmap.items():
+                for codepoint, name in list(subtable.cmap.items()):
                     # NOTE: May overwrite previous values
                     codepoints[codepoint] = name
         if len(codepoints) is 0:
@@ -288,7 +288,7 @@ class Builder(object):
         # table__n_a_m_e.setName().
         record = NameRecord()
         # PyYAML creates strings, force to Unicode
-        record.string = unicode(text)
+        record.string = str(text)
         record.nameID = name_id
         record.platformID = platform_id
         record.platEncID = plat_enc_id

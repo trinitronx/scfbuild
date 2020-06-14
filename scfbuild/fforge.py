@@ -13,7 +13,7 @@ import psMat
 
 from . import util
 from .util import FONT_EM, DEFAULT_GLYPH_WIDTH
-from .unicode import ZWJ_INT, VS16_INT, ZWJ_SEQUENCES
+from .str import ZWJ_INT, VS16_INT, ZWJ_SEQUENCES
 
 logger = logging.getLogger(__name__)
 
@@ -84,13 +84,13 @@ def add_glyphs(font, svg_filepaths, conf):
             u_ids = [int(u_id, 16) for u_id in filename.split("-")]
             # Example: (0x1f441, 0x1f5e8)
 
-            u_str = ''.join(map(unichr, u_ids))
+            u_str = ''.join(map(chr, u_ids))
             # Example: "U\0001f441U\0001f5e8"
 
             # Replace sequences with correct ZWJ/VS16 versions as needed
             try:
                 u_str = ZWJ_SEQUENCES[u_str]
-                u_ids = map(ord, u_str)
+                u_ids = list(map(ord, u_str))
             except KeyError:
                 pass
 
