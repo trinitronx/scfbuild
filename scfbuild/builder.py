@@ -150,7 +150,7 @@ class Builder(object):
         """
         Find a Glyph ID for the filename in filepath
         """
-        if self.uids_for_glyph_names is None:
+        if self.uids_for_glyph_names == None:
             self.uids_for_glyph_names = self.get_uids_for_glyph_names()
 
         (codepoint, filename) = util.codepoint_from_filepath(filepath)
@@ -162,7 +162,7 @@ class Builder(object):
             # If that doesn't work check for a Ligature Glyph
             glyph_id = self.font.getGlyphID(filename)
 
-            if glyph_id is -1:
+            if glyph_id == -1:
                 logger.warning("No Glyph ID found for: %s (Note: A regular "
                                "glyph is required for each color glyph)", filepath)
 
@@ -182,7 +182,7 @@ class Builder(object):
                 for codepoint, name in list(subtable.cmap.items()):
                     # NOTE: May overwrite previous values
                     codepoints[codepoint] = name
-        if len(codepoints) is 0:
+        if len(codepoints) == 0:
             raise NoCodePointsException(
                 'No Unicode IDs/CodePoints found in font.')
 

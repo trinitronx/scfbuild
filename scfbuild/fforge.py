@@ -72,7 +72,7 @@ def add_glyphs(font, svg_filepaths, conf):
 
         # If code point is -1, then the final name is not a simple unicode id
         # so make a glyph for use with ligatures
-        if codepoint is -1:
+        if codepoint == -1:
             # Example: 1f441-1f5e8.svg
 
             # Create a gylph without a defined code point
